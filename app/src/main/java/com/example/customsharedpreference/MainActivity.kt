@@ -43,28 +43,28 @@ class MainActivity : AppCompatActivity() {
         }
 
         SharedPrefUtils.saveDataString(appDatabase, "stringKey", "test")
-        SharedPrefUtils.saveDataLong(appDatabase, "longKey",1234353535)
+        SharedPrefUtils.saveDataLong(appDatabase, "longKey", 1234353535)
         SharedPrefUtils.saveDataInt(appDatabase, "intKey", 5)
         SharedPrefUtils.saveDataFloat(appDatabase, "floatKey", 2.5)
 
         lifecycleScope.launch(Dispatchers.IO) {
-            val value: String = SharedPrefUtils.getDataSting(context, appDatabase, "stringKey", "0")
-            Log.i("appDatabaseResult: ", "value $value")
+            val value: String = SharedPrefUtils.getDataSting(appDatabase, "stringKey", "0")
+            Log.i("appDatabaseResult: ", "key: stringKey value $value")
         }
 
         lifecycleScope.launch(Dispatchers.IO) {
-            val value: Long = SharedPrefUtils.getDataLong(context, appDatabase, "longKey", 0)
-            Log.i("appDatabaseResult: ", "value $value")
+            val value: Long = SharedPrefUtils.getDataLong(appDatabase, "longKey", 0)
+            Log.i("appDatabaseResult: ", "key: longKey value $value")
         }
 
         lifecycleScope.launch(Dispatchers.IO) {
-            val value: Int = SharedPrefUtils.getDataInt(context, appDatabase, "intKey", 0)
-            Log.i("appDatabaseResult: ", "value $value")
+            val value: Int = SharedPrefUtils.getDataInt(appDatabase, "intKey", 0)
+            Log.i("appDatabaseResult: ", "key: intKey value $value")
         }
 
         lifecycleScope.launch(Dispatchers.IO) {
-            val value: Float = SharedPrefUtils.getDataFloat(context, appDatabase, "floatKey", 0.0)
-            Log.i("appDatabaseResult: ", "value $value")
+            val value: Float = SharedPrefUtils.getDataFloat(appDatabase, "floatKey", 0.0F)
+            Log.i("appDatabaseResult: ", "key: floatKey value $value")
         }
     }
 

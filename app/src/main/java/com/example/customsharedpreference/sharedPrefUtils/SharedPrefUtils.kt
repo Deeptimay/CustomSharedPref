@@ -6,7 +6,6 @@ import com.example.customsharedpreference.roomDbSetup.ObjectStoreDao
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.launch
-import kotlin.coroutines.CoroutineContext
 
 class SharedPrefUtils {
     companion object {
@@ -23,11 +22,10 @@ class SharedPrefUtils {
         }
 
         fun saveDataFloat(objectStoreDao: ObjectStoreDao, key: String, value: Double) {
-            genericSaveData(objectStoreDao, key, value.toString(), DataTypes.DOUBLE)
+            genericSaveData(objectStoreDao, key, value.toString(), DataTypes.FLOAT)
         }
 
         suspend fun getDataInt(
-            context: CoroutineContext,
             objectStoreDao: ObjectStoreDao,
             key: String,
             defaultValue: Int
@@ -45,7 +43,6 @@ class SharedPrefUtils {
         }
 
         suspend fun getDataSting(
-            context: CoroutineContext,
             objectStoreDao: ObjectStoreDao,
             key: String,
             defaultValue: String
@@ -78,14 +75,14 @@ class SharedPrefUtils {
         fun getDataFloat(
             objectStoreDao: ObjectStoreDao,
             key: String,
-            defaultValue: Double
-        ): Double {
-            var result: Double? = null
+            defaultValue: Float
+        ): Float {
+            var result: Float? = null
             val obj = objectStoreDao.getKeyValue(key)
             try {
                 if (obj != null) {
-                    if (obj.value != null && obj.type == DataTypes.DOUBLE.toString())
-                        result = obj.value.toDouble()
+                    if (obj.value != null && obj.type == DataTypes.FLOAT.toString())
+                        result = obj.value.toFloat()
                 }
             } catch (_: Exception) {
             }
